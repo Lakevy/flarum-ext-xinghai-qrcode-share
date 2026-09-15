@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode=production"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "flarum-webpack-config": "^2.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^5.0.0"
+  }
+}

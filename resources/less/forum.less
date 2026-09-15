@@ -1,0 +1,195 @@
+.QrCodeShareModal .Modal-content {
+  background: #f8f3e7;
+  border: 1px solid rgba(243, 199, 124, .35);
+  border-radius: 10px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, .66), 0 0 24px rgba(243, 199, 124, .08);
+  color: #26324e;
+  overflow: hidden;
+}
+
+.QrCodeShareModal .QrCodeShareModal-body {
+  background: #f8f3e7 !important;
+  color: #26324e !important;
+  padding: 0 !important;
+}
+
+.QrCodeShareModal-main {
+  padding: 27px 30px 28px;
+}
+
+.QrCodeShareModal-card {
+  text-align: center;
+  padding: 4px 0 14px;
+}
+
+.QrCodeShareModal-brand {
+  color: #26324e;
+  font-family: 'Shippori Mincho', 'Noto Serif SC', serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-shadow: none;
+}
+
+.QrCodeShareModal-pageTitle {
+  color: #66708a;
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 7px auto 14px;
+  max-width: 310px;
+  overflow-wrap: anywhere;
+}
+
+.QrCodeShareModal-image {
+  background: #fff;
+  border: 7px solid rgba(255, 255, 255, .96);
+  border-radius: 6px;
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
+  box-shadow: 0 0 0 1px rgba(243, 199, 124, .55), 0 0 20px rgba(243, 199, 124, .18);
+  width: 260px;
+}
+
+.QrCodeShareModal-hint {
+  color: #796442;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.QrCodeShareModal-actions {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.QrCodeShareModal-actions .Button--primary {
+  background: #182344 !important;
+  border: 1px solid #b78b43 !important;
+  border-radius: 6px;
+  box-shadow: inset 0 0 10px rgba(243, 199, 124, .07), 0 2px 9px rgba(0, 0, 0, .25);
+  color: #fff4d8 !important;
+  text-shadow: none;
+}
+
+.QrCodeShareModal-actions .Button--primary:hover,
+.QrCodeShareModal-actions .Button--primary:focus {
+  background: #293968 !important;
+  border-color: #e0b96d !important;
+  box-shadow: 0 0 16px rgba(243, 199, 124, .25), 0 4px 13px rgba(0, 0, 0, .3);
+  color: #fff;
+}
+
+.QrCodeShareModal-link {
+  margin-top: 16px;
+}
+
+.QrCodeShareModal-linkLabel {
+  color: #65522f;
+  display: block;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.QrCodeShareModal-linkControls {
+  display: flex;
+  gap: 8px;
+}
+
+.QrCodeShareModal-linkControls .FormControl {
+  background: #fffdfa !important;
+  border: 1px solid #c7a361 !important;
+  border-radius: 6px;
+  color: #26324e !important;
+  font-size: 12px;
+  min-width: 0;
+}
+
+.QrCodeShareModal-linkControls .FormControl:focus {
+  border-color: #997332 !important;
+  box-shadow: 0 0 0 3px rgba(183, 139, 67, .16);
+}
+
+.QrCodeShareModal-linkControls .Button {
+  background: #26324e !important;
+  border: 1px solid #26324e !important;
+  border-radius: 6px;
+  color: #fff4d8 !important;
+  flex: 0 0 auto;
+}
+
+.QrCodeShareModal-linkControls .Button:hover,
+.QrCodeShareModal-linkControls .Button:focus {
+  background: #354775 !important;
+  border-color: #b78b43 !important;
+  color: #fff8e7 !important;
+}
+
+.QrCodeShareModal-loading {
+  animation: QrCodeShareModal-spin .75s linear infinite;
+  border: 3px solid rgba(243, 199, 124, .18);
+  border-radius: 50%;
+  border-top-color: #f3c77c;
+  height: 38px;
+  margin: 68px auto;
+  width: 38px;
+}
+
+.QrCodeShareModal-error {
+  color: #ff9b92;
+  margin: 55px 0;
+}
+
+@media (max-width: 767px) {
+  .QrCodeShareModal {
+    box-sizing: border-box;
+    max-width: none !important;
+    width: calc(100vw - 28px) !important;
+  }
+
+  .Modal-dialog.QrCodeShareModal,
+  .QrCodeShareModal {
+    left: auto !important;
+    margin: 14px auto !important;
+    right: auto !important;
+    transform: none !important;
+  }
+
+  .QrCodeShareModal .Modal-dialog {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: none !important;
+    width: 100% !important;
+  }
+
+  .QrCodeShareModal .Modal-content {
+    border-radius: 12px;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none;
+    overflow: hidden;
+  }
+
+  .QrCodeShareModal-main {
+    padding: 22px 16px 14px;
+  }
+
+  .QrCodeShareModal-image {
+    max-width: 218px;
+    width: 100%;
+  }
+
+  .QrCodeShareModal-linkControls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .QrCodeShareModal-linkControls .Button {
+    min-height: 38px;
+    width: 100%;
+  }
+}
+
+@keyframes QrCodeShareModal-spin {
+  to { transform: rotate(360deg); }
+}

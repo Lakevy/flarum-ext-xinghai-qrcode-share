@@ -1,0 +1,32 @@
+{
+  "name": "liubei/qrcode-share",
+  "description": "Add a front-end QR-code sharing dialog to Flarum discussions and FoF Blog posts.",
+  "type": "flarum-extension",
+  "keywords": ["flarum", "qrcode", "share", "fof-blog"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Liubei"
+    }
+  ],
+  "require": {
+    "flarum/core": "^1.8.0"
+  },
+  "extra": {
+    "flarum-extension": {
+      "title": "QR Code Share",
+      "icon": {
+        "name": "fas fa-qrcode",
+        "backgroundColor": "#1f6feb",
+        "color": "#ffffff"
+      }
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Liubei\\QrCodeShare\\": "src/"
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

@@ -1,0 +1,13 @@
+liubei-qrcode-share:
+  forum:
+    post_controls:
+      qrcode: QR code
+    modal:
+      title: Share by QR code
+      alt: QR code for this page
+      hint: Scan to view this page
+      download: Download PNG
+      link_label: Page link (tap to select)
+      copy: Copy link
+      copied: Copied
+      error: The QR code could not be generated. Please refresh the page and try again.

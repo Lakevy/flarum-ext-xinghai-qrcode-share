@@ -1,0 +1,13 @@
+liubei-qrcode-share:
+  forum:
+    post_controls:
+      qrcode: 二维码
+    modal:
+      title: 二维码分享
+      alt: 当前页面二维码
+      hint: 扫码查看完整内容
+      download: 保存 PNG
+      link_label: 页面链接（轻点可全选）
+      copy: 复制链接
+      copied: 已复制
+      error: 二维码生成失败，请刷新页面后重试。
