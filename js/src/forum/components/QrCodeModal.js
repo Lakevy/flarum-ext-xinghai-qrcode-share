@@ -1,4 +1,5 @@
 import Modal from 'flarum/common/components/Modal';
+import app from 'flarum/forum/app';
 import Button from 'flarum/common/components/Button';
 import QRCode from 'qrcode';
 
@@ -7,7 +8,9 @@ export default class QrCodeModal extends Modal {
     super.oninit(vnode);
 
     this.discussion = this.attrs.discussion;
-    this.url = window.location.href;
+    this.url = this.attrs.url || window.location.href;
+    this.shareTitle = this.attrs.shareTitle || (this.discussion && this.discussion.title()) || document.title;
+    this.shareText = this.attrs.shareText || `${this.shareTitle}\n${this.url}`;
     this.imageUrl = null;
     this.error = false;
     this.copied = false;
@@ -90,39 +93,40 @@ export default class QrCodeModal extends Modal {
       console.error('[liubei/qrcode-share] Could not generate QR code', error);
     }
 
-    app.redraw();
+    m.redraw();
   }
 
   filename() {
-    const title = (this.discussion && this.discussion.title()) || 'xinghaihuixiang';
+    const title = this.shareTitle || 'xinghaihuixiang';
     return `${title.replace(/[\\/:*?"<>|]/g, '-').slice(0, 80)}-qrcode.png`;
   }
 
-  async copyLink() {
+  async copyLink(value = this.url) {
     try {
       if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(this.url);
+        await navigator.clipboard.writeText(value);
       } else {
         const field = document.createElement('textarea');
-        field.value = this.url;
+        field.value = value;
         field.setAttribute('readonly', '');
         field.style.position = 'fixed';
         field.style.opacity = '0';
         document.body.appendChild(field);
         field.select();
-        document.execCommand('copy');
+        const copied = document.execCommand('copy');
         document.body.removeChild(field);
+        if (!copied) throw new Error('Clipboard unavailable');
       }
 
       this.copied = true;
-      app.redraw();
+      m.redraw();
     } catch (error) {
       console.error('[liubei/qrcode-share] Could not copy link', error);
     }
   }
 
   content() {
-    const pageTitle = (this.discussion && this.discussion.title()) || document.title;
+    const pageTitle = this.shareTitle;
 
     return (
       <div className="Modal-body QrCodeShareModal-body">
@@ -160,6 +164,7 @@ export default class QrCodeModal extends Modal {
           )}
 
           <div className="QrCodeShareModal-link">
+            {this.attrs.url && <Button className="Button" icon="fas fa-copy" onclick={() => this.copyLink(this.shareText)}>复制标题和链接</Button>}
             <label className="QrCodeShareModal-linkLabel" for="qrcode-share-link">
               {app.translator.trans('liubei-qrcode-share.forum.modal.link_label')}
             </label>

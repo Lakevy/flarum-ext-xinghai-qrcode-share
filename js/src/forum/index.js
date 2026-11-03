@@ -5,6 +5,17 @@ import Button from 'flarum/common/components/Button';
 import QrCodeModal from './components/QrCodeModal';
 
 app.initializers.add('liubei/qrcode-share', () => {
+  // Versioned optional API. Consumers resolve it at click time, not at startup.
+  app.liubeiQrShare = {
+    version: 1,
+    open({ url, title, text } = {}) {
+      const target = new URL(url || window.location.href, window.location.href);
+      if (!['https:', 'http:'].includes(target.protocol) || target.origin !== window.location.origin || target.username || target.password) {
+        throw new Error('QR sharing requires a same-origin HTTP(S) URL');
+      }
+      app.modal.show(QrCodeModal, { url: target.href, shareTitle: title, shareText: text });
+    },
+  };
   // FoF Blog articles are Flarum discussions, so the first-post action covers
   // both ordinary discussion originals and blog article originals without
   // depending on FoF Blog internals. Replies deliberately have no QR action.

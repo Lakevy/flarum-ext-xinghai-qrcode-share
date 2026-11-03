@@ -1,0 +1,17 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+function Base(){} Base.prototype.oninit=function(v){this.attrs=v.attrs;};
+let opened,callback;
+const app={initializers:{add:(n,f)=>f()},modal:{show:(Modal,attrs)=>opened={Modal,attrs}},redraw(){},translator:{trans:s=>s}};
+const m=(...args)=>args;
+const document={title:'Forum title'};
+const window={location:{href:'https://forum.example/d/123?near=2',origin:'https://forum.example'}};
+const compat={'forum/app':app,'common/extend':{extend:(p,k,f)=>callback=f},'forum/utils/PostControls':{},'common/components/Button':Base,'common/components/Modal':Base};
+vm.runInNewContext(fs.readFileSync(__dirname+'/dist/forum.js','utf8'),{flarum:{core:{compat}},module:{exports:{}},m,window,document,URL,console,navigator:{},setTimeout,clearTimeout});
+assert.equal(app.liubeiQrShare.version,1);
+app.liubeiQrShare.open({url:'/m/abc123',title:'广州茶会',text:'广州茶会\nhttps://forum.example/m/abc123'});
+let modal=new opened.Modal();modal.oninit({attrs:opened.attrs});assert.equal(modal.url,'https://forum.example/m/abc123');assert.equal(modal.shareTitle,'广州茶会');assert.equal(modal.filename(),'广州茶会-qrcode.png');
+for(const url of ['javascript:alert(1)','https://other.example/m/abc','https://me:pass@forum.example/m/a'])assert.throws(()=>app.liubeiQrShare.open({url}));
+const discussion={title:()=> '原有讨论帖'};
+modal=new opened.Modal();modal.oninit({attrs:{discussion}});assert.equal(modal.url,window.location.href);assert.equal(modal.shareTitle,'原有讨论帖');
+let count=0;callback({add:()=>count++},{number:()=>2,discussion:()=>discussion});assert.equal(count,0);callback({add:()=>count++},{number:()=>1,discussion:()=>discussion});assert.equal(count,1);
+console.log('PASS built QR bundle: explicit title and short URL, same-origin URL validation, legacy discussion defaults, first-post-only action');
