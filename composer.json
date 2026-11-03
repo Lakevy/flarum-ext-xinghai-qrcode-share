@@ -1,8 +1,13 @@
 {
   "name": "liubei/qrcode-share",
-  "description": "Add a front-end QR-code sharing dialog to Flarum discussions and FoF Blog posts.",
+  "description": "为帖子与博客生成二维码分享入口。",
   "type": "flarum-extension",
-  "keywords": ["flarum", "qrcode", "share", "fof-blog"],
+  "keywords": [
+    "flarum",
+    "qrcode",
+    "share",
+    "fof-blog"
+  ],
   "license": "MIT",
   "authors": [
     {
@@ -14,12 +19,13 @@
   },
   "extra": {
     "flarum-extension": {
-      "title": "QR Code Share",
+      "title": "自研 · 二维码分享",
       "icon": {
         "name": "fas fa-qrcode",
         "backgroundColor": "#1f6feb",
         "color": "#ffffff"
-      }
+      },
+      "category": "feature"
     }
   },
   "autoload": {
@@ -28,5 +34,9 @@
     }
   },
   "minimum-stability": "stable",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "support": {
+    "source": "https://github.com/Lakevy/flarum-ext-xinghai-qrcode-share",
+    "issues": "https://github.com/Lakevy/flarum-ext-xinghai-qrcode-share/issues"
+  }
 }
